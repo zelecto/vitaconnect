@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function __invoke($user)
+    public function __invoke($emailUser)
     {
-        return $user;
-        return view('home.HomeView');
+        $user = User::where('email', $emailUser)->first();
+        return view('home.HomeView', ['user' => $user]);
     }
 }
