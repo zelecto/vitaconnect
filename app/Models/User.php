@@ -32,4 +32,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
+    public function getNameAttribute($value)
+    {
+        return ucfirst(strtolower($value));
+    }
+
+
+    public function getLastNameAttribute($value)
+    {
+        return ucfirst(strtolower($value));
+    }
 }
