@@ -52,18 +52,25 @@
 
                 <img class="w-1/4" src=".../../../assets/IconoLogin.png" alt="">
 
-                <form class="flex flex-col w-full px-10 items-center">
+                <form method="POST" action="/Autenticar" id="loginUserFrom"
+                    class="flex flex-col w-full px-10 items-center">
+                    @csrf
+                    <x-input type='email' name="email" id="email" placeholder="Nombre de usuario"
+                        class="my-5" />
+                    <x-input type='password' name="password" placeholder="Contraseña" class="my-5" />
 
-                    <x-InputText name="username" placeholder="Nombre de usuario" class="my-5" />
-                    <x-InputText name="password" placeholder="contraseña" class="my-5" />
-                    <button type="submit"
+                    @if (session('error'))
+                        <p class="text-red-600">{{ session('error') }}</p>
+                    @endif
+                    <button type="submit" form="loginUserFrom"
                         class="w-1/2 h-14 rounded-lg bg-blue-500 my-5 text-white font-bold">Acceder</button>
                 </form>
 
-                <a href="#"
-                    class="text-blue-500 hover:text-blue-700 underline hover:no-underline font-semibold transition duration-300 ease-in-out">
-                    ¿Aún no tienes cuenta? ¡Crea una aquí!
-                </a>
+                <x-registerModal />
+                <button onclick="openModal()" class=" text-blue-500 font-bold my-2">
+                    Crear nuevo usuario
+                </button>
+
             </div>
 
         </div>
