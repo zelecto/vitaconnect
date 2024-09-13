@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function __invoke()
+    public function __invoke($user)
     {
-        return view('home.loginView');
+        return $user;
+        return view('home.HomeView');
     }
 }
