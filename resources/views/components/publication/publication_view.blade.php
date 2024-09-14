@@ -1,13 +1,16 @@
+@props(['publication', 'user'])
+
 <div class="w-full p-5 bg-blue-100 rounded-md">
     <div class="flex justify-between">
         <x-image-perfil class="min-w-14 size-14" />
 
         <div class="flex flex-col justify-between w-full min-h-full mx-5">
-            <div class="mb-2  text-xl font-semibold font-mono">
-                <h1>name lastname</h1>
+            <div class="mb-2 text-xl font-semibold font-mono">
+                <h1>{{ $user->name }} {{ $user->last_name }}</h1>
             </div>
+
             <div class="text-gray-400 text-xl font-semibold font-mono">
-                <h1>Tiempo de publicacion</h1>
+                <h1>{{ $publication->created_at->diffForHumans() }}</h1>
             </div>
         </div>
 
@@ -17,48 +20,44 @@
     </div>
 
     <h2 class="text-xl my-3">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus molestias voluptate iure veritatis eius
-        excepturi, perspiciatis possimus, itaque, ipsa totam rerum architecto quos corrupti eligendi reprehenderit ea!
-        Quibusdam, architecto dicta!
+        {{ $publication->description }}
     </h2>
 
     <div class="w-full">
         <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            @for ($i = 1; $i <= 3; $i++)
+            @foreach ($publication->images as $image)
                 <li class="w-full h-80">
-                    <img src="https://via.placeholder.com/250" alt="Imagen {{ $i }}"
+                    <img src="{{ asset('storage/' . $image->image_path) }}" alt="Imagen"
                         class="w-full h-full object-cover rounded-lg">
                 </li>
-            @endfor
+            @endforeach
         </ul>
     </div>
 
-    <div class="flex items-center space-x-4 mt-5">
 
+    <div class="flex items-center space-x-4 mt-5">
+        <!-- Visualizaciones -->
         <div class="flex items-center">
             <button disabled class="material-symbols-outlined mx-2 p-1 rounded-md text-gray-600 text-sm">
                 visibility
             </button>
-            <span class="text-gray-600 text-sm">15</span>
+            <span class="text-gray-600 text-lg">{{ $publication->views }}</span>
         </div>
 
-
-        <div class="flex items-center">
-            <button
-                class="material-symbols-outlined rounded-lg mx-2 p-1 hover:bg-red-400 hover:text-white text-gray-600">
+        <!-- Likes -->
+        <div class="flex items-center rounded-lg p-1 hover:bg-red-400 hover:text-white text-gray-600">
+            <button class="material-symbols-outlined  mx-2  ">
                 favorite
             </button>
-            <span class="text-gray-600 text-sm">30</span>
+            <span class="text-lg">{{ $publication->reaction }}</span>
         </div>
 
-
-        <div class="flex items-center">
-            <button
-                class="material-symbols-outlined rounded-lg mx-2 p-1 hover:bg-blue-400 hover:text-white text-gray-600">
+        <!-- Comentarios -->
+        <div class="flex items-center rounded-lg p-1 hover:bg-blue-400 hover:text-white text-gray-600">
+            <button class="material-symbols-outlined rounded-lg mx-2">
                 comment
             </button>
-            <span class="text-gray-600 text-sm">8</span>
+            <span class=" text-lg">{{ $publication->comments_count ?? 0 }}</span>
         </div>
     </div>
-
 </div>

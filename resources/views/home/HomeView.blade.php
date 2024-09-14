@@ -50,19 +50,24 @@
                     </div>
                 </div>
 
-                <x-publication.create_publication_view />
-                <div class="mb-5">
-                    <x-publication.publication_view />
-                </div>
-                <div class="mb-5">
-                    <x-publication.publication_view />
-                </div>
+                <x-publication.create_publication_view :userEmail="$user->email" />
+
+
+                @if ($publications->isEmpty())
+                    <p>No hay publicaciones disponibles.</p>
+                @else
+                    @foreach ($publications as $publication)
+                        <div class="mb-5">
+                            <x-publication.publication_view :publication="$publication" :user="$user" />
+                        </div>
+                    @endforeach
+                @endif
+
+
             </div>
 
-            <!-- Espaciador para el lado derecho fijo -->
             <div class="w-1/4"></div>
 
-            <!-- Lado derecho fijo -->
             <div class="flex flex-col fixed right-1 w-[26%]">
                 <div>
                     <h1 class="font-sans text-4xl font-bold">Stories</h1>
