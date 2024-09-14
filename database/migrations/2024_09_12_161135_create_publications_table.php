@@ -14,24 +14,31 @@ return new class extends Migration
         Schema::create('publications', function (Blueprint $table) {
             $table->id();
             $table->string('description');
-            $table->integer('reaction');
-            $table->integer('views');
-            $table->string('img')->nullable();
-            $table->timestamps();
+            $table->integer('reaction')->default(0);
+            $table->integer('views')->default(0);
             $table->string('user_email');
+            $table->timestamps();
+
             $table->foreign('user_email')->references('email')->on('users')->onDelete('cascade')->onUpdate('cascade');
+        });
+
+        Schema::create('publication_images', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('publication_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->string('image_path');
+            $table->timestamps();
         });
 
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->longText('text');
-            $table->integer('reaction');
+            $table->integer('reaction')->default(0);
             $table->string('user_email');
-
             $table->foreignId('publication_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('user_email')->references('email')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
+
 
     /**
      * Reverse the migrations.
@@ -39,6 +46,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('publications');
+        Schema::dropIfExists('publication_images');
         Schema::dropIfExists('comments');
     }
 };
