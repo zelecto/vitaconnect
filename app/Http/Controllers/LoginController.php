@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Publication;
 use App\Models\User;
 use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
@@ -27,10 +28,7 @@ class LoginController extends Controller
 
 
         if ($user && Hash::check($request->password, $user->password)) {
-
-            session(['user_id' => $user->id]);
-
-            return redirect('/Home/' . urlencode($user->email));
+            return redirect('/Home/' . $user->email);
         }
 
         return redirect('/')->with('error', 'Credenciales incorrectas.');
