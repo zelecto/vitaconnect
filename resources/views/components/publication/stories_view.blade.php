@@ -31,6 +31,8 @@
         const scrollContainer = document.querySelector('.overflow-x-auto');
 
         prevButton.addEventListener('click', () => {
+            console.log('Hola mundo');
+
             scrollContainer.scrollBy({
                 left: -480,
                 behavior: 'smooth'
@@ -38,6 +40,7 @@
         });
 
         nextButton.addEventListener('click', () => {
+            console.log('Hola mundo');
             scrollContainer.scrollBy({
                 left: 480,
                 behavior: 'smooth'

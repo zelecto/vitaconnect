@@ -7,25 +7,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home</title>
     @vite('resources/css/app.css')
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
 </head>
 
 <body>
-    <div class="min-h-screen w-screen bg-gray-50 p-10">
-        <div class="flex justify-between">
-            <div class="w-1/5 ">
-                <div class="flex w-full flex-col justify-center items-center">
-                    <x-image-perfil></x-image-perfil>
-                    <h1 class="font-bold text-lg font-sans">{{ $user->name }} {{ $user->last_name }}</h1>
-                    <p class="text-gray-400">{{ $user->email }}</p>
-                </div>
-
+    <div class="min-h-screen min-w-screen bg-gray-50">
+        <div class="flex min-w-screen justify-between min-h-screen px-5 p-10">
+            <!-- Lado izquierdo fijo -->
+            <div class="flex flex-col items-center fixed left-[3.5%]">
+                <x-image-perfil class="size-32"></x-image-perfil>
+                <h1 class="font-bold text-lg font-sans">{{ $user->name }} {{ $user->last_name }}</h1>
+                <p class="text-gray-400">{{ $user->email }}</p>
             </div>
 
+            <!-- Espaciador para el lado izquierdo fijo -->
+            <div class="w-[10%]"></div>
 
-            <div class="w-full min-h-full  px-10">
+            <!-- Contenido central con scroll -->
+            <div class="w-full md:w-[60%] min-h-full pl-10">
                 <div class="flex justify-between">
                     <h2 class="font-sans text-4xl font-bold">
                         Feeds
@@ -48,20 +50,39 @@
                     </div>
                 </div>
 
-                <x-create_publication_view></x-create_publication_view>
-            </div>
-
-
-
-            <div class="w-1/5 bg-green-300">
-                <div>
-                    <h1 class="font-bold text-lg font-sans">Historias</h1>
+                <x-publication.create_publication_view />
+                <div class="mb-5">
+                    <x-publication.publication_view />
+                </div>
+                <div class="mb-5">
+                    <x-publication.publication_view />
                 </div>
             </div>
 
+            <!-- Espaciador para el lado derecho fijo -->
+            <div class="w-1/4"></div>
+
+            <!-- Lado derecho fijo -->
+            <div class="flex flex-col fixed right-1 w-[26%]">
+                <div>
+                    <h1 class="font-sans text-4xl font-bold">Stories</h1>
+                </div>
+                <div class="my-5">
+                    <x-publication.stories_view />
+                </div>
+
+                <div class="my-5">
+                    <h1 class="font-sans text-2xl font-bold">Sugerencias de amistad</h1>
+                    <div class="min-w-full px-8">
+                        <x-publication.suggetions_view />
+                    </div>
+                </div>
+
+            </div>
 
         </div>
     </div>
+
 </body>
 
 </html>
