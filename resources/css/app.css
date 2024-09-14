@@ -3,10 +3,23 @@
 @tailwind utilities;
 @import "node_modules/material-design-icons/iconfont/material-icons.css";
 
+.scrollbar-hide {
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+}
+
 .scrollbar-hide::-webkit-scrollbar {
     display: none;
+    /* Safari and Chrome */
 }
-.scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+
+/* Asegura que el contenedor tenga un ancho fijo y el contenido sea más ancho que el contenedor */
+.scroll-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+
+    /* Añadido para suavizar el desplazamiento */
 }
