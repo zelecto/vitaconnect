@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class publication extends Model
+class Publication extends Model
 {
     use HasFactory;
 
@@ -24,5 +24,10 @@ class publication extends Model
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
         ];
+    }
+
+    public function images()
+    {
+        return $this->hasMany(PublicationImage::class);
     }
 }
