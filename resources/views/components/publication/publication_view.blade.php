@@ -1,6 +1,7 @@
 @props(['publication', 'user'])
 
 <div class="w-full p-5 bg-blue-100 rounded-md">
+    <x-publication.create_coment_modal :publication="$publication" :user="$user" />
     <div class="flex justify-between">
         <x-image-perfil class="min-w-14 size-14" />
 
@@ -34,30 +35,28 @@
         </ul>
     </div>
 
-
     <div class="flex items-center space-x-4 mt-5">
-        <!-- Visualizaciones -->
-        <div class="flex items-center">
-            <button disabled class="material-symbols-outlined mx-2 p-1 rounded-md text-gray-600 text-sm">
-                visibility
+        <form action="{{ route('reaction.create', [$publication->id, $user->email]) }}" method="POST">
+            @csrf
+            <input type="hidden" name="id_publication" value="{{ $publication->id }}">
+            <input type="hidden" name="user_email" value="{{ $user->email }}">
+            <button type="submit"
+                class="flex items-center rounded-lg p-1 hover:bg-red-400 hover:text-white text-gray-600 cursor-pointer">
+                <span class="material-symbols-outlined mx-2">
+                    favorite
+                </span>
+                <span class="text-lg">{{ $publication->reaction }}</span>
             </button>
-            <span class="text-gray-600 text-lg">{{ $publication->views }}</span>
-        </div>
-
-        <!-- Likes -->
-        <div class="flex items-center rounded-lg p-1 hover:bg-red-400 hover:text-white text-gray-600">
-            <button class="material-symbols-outlined  mx-2  ">
-                favorite
-            </button>
-            <span class="text-lg">{{ $publication->reaction }}</span>
-        </div>
+        </form>
 
         <!-- Comentarios -->
-        <div class="flex items-center rounded-lg p-1 hover:bg-blue-400 hover:text-white text-gray-600">
-            <button class="material-symbols-outlined rounded-lg mx-2">
+        <button onclick="openModalComnet({{ $publication->id }})"
+            class="flex items-center rounded-lg p-1 hover:bg-blue-400 hover:text-white text-gray-600">
+            <span class="material-symbols-outlined rounded-lg mx-2">
                 comment
-            </button>
+            </span>
             <span class=" text-lg">{{ $publication->comments_count ?? 0 }}</span>
-        </div>
+        </button>
+
     </div>
 </div>

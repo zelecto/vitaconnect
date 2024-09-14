@@ -15,11 +15,11 @@
             </div>
 
             <div class="flex w-full justify-between items-center px-2 mt-4">
-                <!-- Input de archivo oculto -->
+
                 <input type="file" id="fileInput" name="images[]" class="hidden" accept="image/*" multiple
                     onchange="previewImages(event)">
 
-                <!-- Botón para abrir el selector de archivos -->
+
                 <button type="button" class="flex p-2 rounded-lg hover:bg-slate-300"
                     onclick="document.getElementById('fileInput').click()">
                     <span class="material-symbols-outlined">
@@ -29,7 +29,7 @@
                 </button>
 
                 <!-- Contenedor para mostrar las imágenes seleccionadas -->
-                <div id="imagePreviewContainer" class="flex space-x-2 overflow-x-auto hidden">
+                <div id="imagePreviewContainer" class="flex space-x-2 overflow-x-auto ">
                     <!-- Las imágenes seleccionadas se mostrarán aquí -->
                 </div>
 
