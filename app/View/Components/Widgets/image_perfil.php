@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class image-perfil.blade extends Component
+class ImagePerfil extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class image-perfil.blade extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.image-perfil.blade.php');
+        return view('components.image-perfil');
     }
 }
