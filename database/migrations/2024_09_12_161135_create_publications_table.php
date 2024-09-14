@@ -11,6 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::disableForeignKeyConstraints();
+
+        Schema::enableForeignKeyConstraints();
         Schema::create('publications', function (Blueprint $table) {
             $table->id();
             $table->string('description');
@@ -29,10 +32,10 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('reactions', function (Blueprint $table) {
             $table->id();
-            $table->longText('text');
-            $table->integer('reaction')->default(0);
+            $table->longText('text')->nullable();
+            $table->boolean('reaction')->default(false);
             $table->string('user_email');
             $table->foreignId('publication_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('user_email')->references('email')->on('users')->onDelete('cascade')->onUpdate('cascade');
@@ -47,6 +50,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('publications');
         Schema::dropIfExists('publication_images');
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('reactions');
     }
 };
