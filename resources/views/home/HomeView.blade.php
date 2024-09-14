@@ -8,6 +8,10 @@
     <title>Home</title>
     @vite('resources/css/app.css')
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js" defer></script>
+
+
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
@@ -68,7 +72,7 @@
 
             <div class="w-1/4"></div>
 
-            <div class="flex flex-col fixed right-1 w-[26%]">
+            <div class="flex flex-col fixed right-0 w-[26%]">
                 <div>
                     <h1 class="font-sans text-4xl font-bold">Stories</h1>
                 </div>

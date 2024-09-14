@@ -16,8 +16,6 @@ class Publication extends Model
         'img'
     ];
 
-    protected $guarded = ['id'];
-
     protected function casts(): array
     {
         return [
