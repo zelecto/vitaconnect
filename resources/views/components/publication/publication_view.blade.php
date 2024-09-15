@@ -1,6 +1,8 @@
 @props(['publication', 'user'])
 
-<div class="w-full p-5 bg-blue-100 rounded-md">
+
+<div class="w-full p-5 rounded-lg shadow-lg" style="background-color: {{ $publication->color }};">
+
     <x-publication.create_coment_modal :publication="$publication" :user="$user" />
     <div class="flex justify-between">
         <x-image-perfil class="min-w-14 size-14" />
@@ -10,7 +12,7 @@
                 <h1>{{ $publication->user->name }} {{ $publication->user->last_name }}</h1>
             </div>
 
-            <div class="text-gray-400 text-xl font-semibold font-mono">
+            <div class="text-gray-600 text-xl font-semibold font-mono">
                 <h1>{{ $publication->created_at->diffForHumans() }}</h1>
             </div>
         </div>
@@ -55,7 +57,7 @@
             <span class="material-symbols-outlined rounded-lg mx-2">
                 comment
             </span>
-            <span class=" text-lg">{{ $publication->comments_count ?? 0 }}</span>
+            <span class=" text-lg">{{ count($publication->comments) ?? 0 }}</span>
         </button>
 
     </div>

@@ -11,6 +11,9 @@ export default {
                 sans: ["Inter", "sans-serif"],
                 serif: ["Lora", "serif"],
             },
+            transitionDuration: {
+                500: "500ms",
+            },
         },
     },
     plugins: [],

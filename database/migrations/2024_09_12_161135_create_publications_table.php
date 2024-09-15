@@ -20,8 +20,8 @@ return new class extends Migration
             $table->integer('reaction')->default(0);
             $table->integer('views')->default(0);
             $table->string('user_email');
+            $table->string('color')->default('#d1e8e2');
             $table->timestamps();
-
             $table->foreign('user_email')->references('email')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
 

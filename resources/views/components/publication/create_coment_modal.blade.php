@@ -1,6 +1,6 @@
 @props(['publication', 'user'])
 
-<div id="{{ $publication->id }}" class="fixed inset-0 items-center justify-center bg-gray-800 bg-opacity-80 z-50 ">
+<div id="{{ $publication->id }}" class="fixed inset-0 items-center justify-center bg-gray-800 bg-opacity-80 z-50 hidden ">
     <div class="w-full h-full p-10 flex justify-center">
         <div class="bg-black min-w-[800px] overflow-hidden rounded-l-lg shadow-xl sm:max-w-lg sm:w-full">
             <div class="h-full overflow-hidden w-full px-4 py-5">
