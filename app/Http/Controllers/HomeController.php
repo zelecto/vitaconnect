@@ -12,8 +12,10 @@ class HomeController extends Controller
     {
         $user = User::where('email', $email)->first();
 
-        $publications = Publication::where('user_email', $email)
-            ->with('images')
+        $publications = Publication::with([
+            'user:email,name,last_name',
+            'images'
+        ])
             ->orderBy('created_at', 'desc')
             ->get();
 

@@ -34,8 +34,15 @@ return new class extends Migration
 
         Schema::create('reactions', function (Blueprint $table) {
             $table->id();
-            $table->longText('text')->nullable();
             $table->boolean('reaction')->default(false);
+            $table->string('user_email');
+            $table->foreignId('publication_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_email')->references('email')->on('users')->onDelete('cascade')->onUpdate('cascade');
+        });
+
+        Schema::create('commets', function (Blueprint $table) {
+            $table->id();
+            $table->longText('text')->nullable();
             $table->string('user_email');
             $table->foreignId('publication_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('user_email')->references('email')->on('users')->onDelete('cascade')->onUpdate('cascade');
@@ -51,5 +58,6 @@ return new class extends Migration
         Schema::dropIfExists('publications');
         Schema::dropIfExists('publication_images');
         Schema::dropIfExists('reactions');
+        Schema::dropIfExists('commets');
     }
 };

@@ -13,13 +13,16 @@
                         rows="3" placeholder="Enter any additional order notes..."></textarea>
                 </div>
             </div>
+            <div id="imagePreviewContainer" class="flex space-x-4 px-2 mt-4">
+                <!-- Las imágenes seleccionadas se mostrarán aquí -->
+            </div>
 
             <div class="flex w-full justify-between items-center px-2 mt-4">
-
+                <!-- Input de archivo oculto -->
                 <input type="file" id="fileInput" name="images[]" class="hidden" accept="image/*" multiple
                     onchange="previewImages(event)">
 
-
+                <!-- Botón para abrir el selector de archivos -->
                 <button type="button" class="flex p-2 rounded-lg hover:bg-slate-300"
                     onclick="document.getElementById('fileInput').click()">
                     <span class="material-symbols-outlined">
@@ -28,10 +31,8 @@
                     <h3 class="font-bold mx-2">Agregar fotos</h3>
                 </button>
 
-                <!-- Contenedor para mostrar las imágenes seleccionadas -->
-                <div id="imagePreviewContainer" class="flex space-x-2 overflow-x-auto ">
-                    <!-- Las imágenes seleccionadas se mostrarán aquí -->
-                </div>
+
+
 
                 <button type="submit"
                     class="inline-block rounded bg-blue-600 px-8 py-2 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-blue-500">

@@ -28,4 +28,9 @@ class Publication extends Model
     {
         return $this->hasMany(PublicationImage::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_email', 'email');
+    }
 }

@@ -7,7 +7,7 @@
 
         <div class="flex flex-col justify-between w-full min-h-full mx-5">
             <div class="mb-2 text-xl font-semibold font-mono">
-                <h1>{{ $user->name }} {{ $user->last_name }}</h1>
+                <h1>{{ $publication->user->name }} {{ $publication->user->last_name }}</h1>
             </div>
 
             <div class="text-gray-400 text-xl font-semibold font-mono">

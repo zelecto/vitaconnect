@@ -1,7 +1,7 @@
+@import "node_modules/material-design-icons/iconfont/material-icons.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "node_modules/material-design-icons/iconfont/material-icons.css";
 
 .scrollbar-hide {
     scrollbar-width: none;

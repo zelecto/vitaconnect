@@ -1,6 +1,6 @@
 @props(['publication', 'user'])
 
-<div id="{{ $publication->id }}" class="fixed inset-0 items-center justify-center bg-gray-800 bg-opacity-80 z-50 hidden">
+<div id="{{ $publication->id }}" class="fixed inset-0 items-center justify-center bg-gray-800 bg-opacity-80 z-50 ">
     <div class="w-full h-full p-10 flex justify-center">
         <div class="bg-black min-w-[800px] overflow-hidden rounded-l-lg shadow-xl sm:max-w-lg sm:w-full">
             <div class="h-full overflow-hidden w-full px-4 py-5">
@@ -41,12 +41,12 @@
             </div>
         </div>
 
-        <div class="bg-black w-1/3 rounded-r-lg p-5">
+        <div class="bg-[#242526] w-1/3 rounded-r-lg p-5">
             <div class="flex justify-between my-5">
                 <x-image-perfil class="min-w-14 size-14" />
                 <div class="flex flex-col justify-between w-full mx-5">
                     <div class="text-xl font-semibold text-white">
-                        <h1>{{ $user->name }} {{ $user->last_name }}</h1>
+                        <h1>{{ $publication->user->name }} {{ $publication->user->last_name }}</h1>
                     </div>
                     <div class="text-white text-xl font-semibold">
                         <h1>{{ $publication->created_at->diffForHumans() }}</h1>
@@ -58,7 +58,7 @@
                 </button>
             </div>
 
-            <h2 class="text-xl my-3 mx-5">{{ $publication->description }}</h2>
+            <h2 class="text-white text-xl my-3 mx-14">{{ $publication->description }}</h2>
 
             <div class="h-[60%] overflow-auto">
                 @for ($i = 0; $i < 10; $i++)
