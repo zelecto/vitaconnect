@@ -8,7 +8,7 @@
         <!-- Modal Header -->
         <div class="flex justify-between items-center p-4">
             <h2 class="text-lg font-semibold text-white">Título del Modal</h2>
-            <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+            <button onclick="closeModalHistory()" id="close-modal" class="text-gray-500 hover:text-gray-700">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
@@ -62,7 +62,7 @@
     // Función para abrir el modal
     function openModalHistory() {
         modal.classList.remove('hidden');
-        swiperInstance = new Swiper('.swiper-container', {
+        swiperInstance1 = new Swiper('.swiper-container', {
             slidesPerView: 1,
             spaceBetween: 0,
             loop: true,
@@ -82,16 +82,16 @@
     }
 
 
-    function closeModal() {
+    function closeModalHistory() {
         modal.classList.add('hidden');
-        if (swiperInstance) {
-            swiperInstance.destroy(true, true);
-            swiperInstance = null;
+        if (swiperInstance1) {
+            swiperInstance1.destroy(true, true);
+            swiperInstance1 = null;
         }
     }
 
     closeModalButtons.forEach(button => {
-        button.addEventListener('click', closeModal);
+        //button.addEventListener('click', closeModal);
 
     });
 </script>
