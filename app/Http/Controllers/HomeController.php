@@ -40,6 +40,17 @@ class HomeController extends Controller
             ->orderBy('like_count', 'desc')
             ->get();
 
-        return view('home.HomeView', ['user' => $user, 'publications' => $publications, 'suggestions' => $topUsersByLikes]);
+        // Construir la consulta
+        $stories = DB::table('stories as s')
+            ->leftJoin('follows as f', 's.user_email', '=', 'f.followed_email')
+            ->where(function ($query) use ($email) {
+                $query->where('s.user_email', $email)
+                    ->orWhere('f.follower_email', $email);
+            })
+            ->select('s.*')
+            ->orderBy('s.created_at', 'desc')
+            ->get();
+
+        return view('home.HomeView', ['user' => $user, 'publications' => $publications, 'suggestions' => $topUsersByLikes, 'stories' => $stories]);
     }
 }
