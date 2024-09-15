@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('email')->primary();
             $table->string('password');
             $table->string('gender');
+            $table->string('foto_perfil');
             //$table->rememberToken();
             $table->timestamps();
         });

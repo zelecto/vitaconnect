@@ -32,6 +32,11 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->gender = $request->gender;
 
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imagePath = $image->store('images', 'public');
+            $user->foto_perfil = $imagePath;
+        }
         $user->save();
 
         return redirect('/Home/' . $user->email);
