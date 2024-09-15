@@ -83,9 +83,8 @@
 
                 <div class="my-5">
                     <h1 class="font-sans text-2xl font-bold">Sugerencias de amistad</h1>
-                    <div class="min-w-full px-8">
-                        <x-publication.suggetions_view :suggestions=$suggetions />
-                    </div>
+                    <x-publication.suggetions_view :suggestions="$suggestions" :user_email="$user->email" />
+
                 </div>
 
             </div>

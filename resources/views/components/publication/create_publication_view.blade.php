@@ -6,7 +6,7 @@
 <form action="{{ route('create.post') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <input type="hidden" id="selectedColor" name="selected_color" value="">
-    <input type="hidden" name="user_email" value="{{ $user->userEmail }}">
+    <input type="hidden" name="user_email" value="{{ $user->email }}">
 
     <div class="w-full my-5">
         <div id="formContainer"
@@ -97,15 +97,16 @@
 
     document.querySelectorAll('.color-box').forEach(box => {
         box.addEventListener('click', function() {
-
             document.querySelectorAll('.color-box').forEach(b => b.style.border =
                 '2px solid transparent');
-
             this.style.border = '2px solid black';
 
             const selectedColor = this.getAttribute('data-color');
             document.getElementById('selectedColor').value = selectedColor;
             document.getElementById('formContainer').style.backgroundColor = selectedColor;
+
+            // Verificar en consola
+            console.log('Selected color:', selectedColor);
         });
     });
 </script>

@@ -5,7 +5,7 @@
 
     <x-publication.create_coment_modal :publication="$publication" :user="$user" />
     <div class="flex justify-between">
-        <x-image-perfil class="min-w-12 h-12" :image_path="$user->foto_perfil"></x-image-perfil>
+        <x-image-perfil class="min-w-12 h-12" :image_path="$publication->user->foto_perfil"></x-image-perfil>
 
         <div class="flex flex-col justify-between w-full min-h-full mx-5">
             <div class="mb-2 text-xl font-semibold font-mono">

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FollowController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PublicationsController;
@@ -24,3 +25,5 @@ Route::post(
     '/CreateComment/{id_publication}/{user_email}/{comentario}',
     [CommentController::class, 'store']
 )->name('comment.create');
+
+Route::post('/Follow/{user_email}/{follow_email}', [FollowController::class, 'follow'])->name('follow');

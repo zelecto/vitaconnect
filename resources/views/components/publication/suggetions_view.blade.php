@@ -1,5 +1,5 @@
-@props(['suggestions'])
-<div class="w-full">
+@props(['suggestions', 'user_email'])
+<div class="w-full px-2">
 
     @foreach ($suggestions as $user)
         <div class="flex justify-between items-center my-3">
@@ -14,11 +14,15 @@
                     <h1>{{ $user->last_name }}</h1>
                 </div>
             </div>
+            <form method="POST"
+                action="{{ route('follow', ['user_email' => $user_email, 'follow_email' => $user->user_email]) }}">
+                @csrf
+                <button type="submit"
+                    class="inline-block rounded bg-black px-8 py-2 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-gray-800">
+                    Seguir
+                </button>
+            </form>
 
-            <button
-                class="inline-block rounded bg-black px-8 py-2 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-gray-800">
-                Seguir
-            </button>
         </div>
     @endforeach
 

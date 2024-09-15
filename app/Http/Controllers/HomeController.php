@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use function Laravel\Prompts\suggest;
+
 class HomeController extends Controller
 {
     public function __invoke($email)
@@ -14,7 +16,7 @@ class HomeController extends Controller
         $user = User::where('email', $email)->first();
 
         $publications = Publication::with([
-            'user:email,name,last_name',
+            'user:email,name,last_name,foto_perfil',
             'images',
             'comments.user:email,name,last_name,foto_perfil'
         ])
@@ -38,7 +40,6 @@ class HomeController extends Controller
             ->orderBy('like_count', 'desc')
             ->get();
 
-
-        return view('home.HomeView', ['user' => $user, 'publications' => $publications, 'suggetions' => $topUsersByLikes]);
+        return view('home.HomeView', ['user' => $user, 'publications' => $publications, 'suggestions' => $topUsersByLikes]);
     }
 }
