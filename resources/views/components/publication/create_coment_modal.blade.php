@@ -43,7 +43,7 @@
 
         <div class="bg-[#242526] w-1/3 rounded-r-lg p-5">
             <div class="flex justify-between my-5">
-                <x-image-perfil class="min-w-14 size-14" />
+                <x-image-perfil class="min-w-14 size-14" :image_path="$user->foto_perfil" />
                 <div class="flex flex-col justify-between w-full mx-5">
                     <div class="text-xl font-semibold text-white">
                         <h1>{{ $publication->user->name }} {{ $publication->user->last_name }}</h1>
@@ -65,9 +65,8 @@
 
                     @foreach ($publication->comments as $comment)
                         <div class="flex items-start my-2">
-                            <!-- Reemplaza con la imagen del perfil del usuario -->
-                            <x-image-perfil class="min-w-12 h-12" />
 
+                            <x-image-perfil class="min-w-12 h-12" :image_path="$comment->user->foto_perfil"></x-image-perfil>
                             <div
                                 class="flex-1 max-w-full bg-gray-100 bg-opacity-70 rounded-lg mx-2 p-4 overflow-x-hidden overflow-y-auto">
                                 <div class="font-semibold">

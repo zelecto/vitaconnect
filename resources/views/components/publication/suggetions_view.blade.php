@@ -4,7 +4,7 @@
     @foreach ($suggestions as $user)
         <div class="flex justify-between items-center my-3">
 
-            <x-image-perfil class="min-w-16 h-16" :src="$user->foto_perfil" />
+            <x-image-perfil class="min-w-12 h-12" :image_path="$user->foto_perfil"></x-image-perfil>
 
             <div class="flex flex-col justify-between w-full min-h-full mx-5 text-xl font-semibold font-mono">
                 <div class="mb-2">

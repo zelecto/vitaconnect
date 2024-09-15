@@ -1,4 +1,4 @@
-@props(['userEmail'])
+@props(['user'])
 @php
     $colors = config('colors_publications');
 @endphp
@@ -6,13 +6,13 @@
 <form action="{{ route('create.post') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <input type="hidden" id="selectedColor" name="selected_color" value="">
-    <input type="hidden" name="user_email" value="{{ $userEmail }}">
+    <input type="hidden" name="user_email" value="{{ $user->userEmail }}">
 
     <div class="w-full my-5">
         <div id="formContainer"
             class="flex flex-col justify-between bg-gray-200 rounded-lg shadow-xl p-5 transition-background-color duration-500">
             <div class="flex items-start rounded-xl py-2 mx-2 bg-white">
-                <x-image-perfil class="size-14 mx-4"></x-image-perfil>
+                <x-image-perfil class="min-w-12 h-12 m-2" :image_path="$user->foto_perfil"></x-image-perfil>
                 <div class="w-full">
                     <textarea id="OrderNotes" name="description"
                         class="mt-2 text-xl w-full rounded-lg border-gray-200 shadow-sm p-2 resize-none focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500 transition ease-in-out duration-300"

@@ -23,7 +23,7 @@
         <div class="flex min-w-screen justify-between min-h-screen px-5 p-10">
             <!-- Lado izquierdo fijo -->
             <div class="flex flex-col items-center fixed left-[3.5%]">
-                <x-image-perfil class="size-32"></x-image-perfil>
+                <x-image-perfil class="size-32" :image_path="$user->foto_perfil"></x-image-perfil>
                 <h1 class="font-bold text-lg font-sans">{{ $user->name }} {{ $user->last_name }}</h1>
                 <p class="text-gray-400">{{ $user->email }}</p>
             </div>
@@ -55,7 +55,7 @@
                     </div>
                 </div>
 
-                <x-publication.create_publication_view :userEmail="$user->email" />
+                <x-publication.create_publication_view :user="$user" />
 
 
                 @if ($publications->isEmpty())
