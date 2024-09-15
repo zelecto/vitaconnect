@@ -15,22 +15,13 @@
                 <div class="mx-2 mb-4">
                     <div>
                         <select name="TipoDeContenido" id="TipoDeContenido"
-                            class="mt-1 block w-full h-10 rounded-lg border border-gray-300 bg-white text-gray-700 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 sm:text-sm">
+                            class="mt-1 px-5 block w-full h-10 rounded-lg border border-gray-300 bg-white text-gray-700 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 sm:text-sm">
                             <option value="publicacion">Publicación</option>
                             <option value="historia">Historia</option>
                         </select>
                     </div>
                 </div>
 
-                <div class="mx-2 mb-4">
-                    <div>
-                        <select name="TipoDeVisibilidad" id="TipoDeVisibilidad"
-                            class="mt-1 px-1 block w-full h-10 rounded-lg border border-gray-300 bg-white text-gray-700 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 sm:text-sm">
-                            <option value="publico">Público</option>
-                            <option value="para_amigos">Para amigos</option>
-                        </select>
-                    </div>
-                </div>
             </div>
             <div class="flex items-start rounded-xl py-2 mx-2 bg-white">
                 <x-image-perfil class="min-w-12 h-12 m-2" :image_path="$user->foto_perfil"></x-image-perfil>

@@ -5,12 +5,13 @@
     <div class="scroll-container scrollbar-hide">
         <ul class="flex gap-2">
             @foreach ($stories as $story)
-                <button onclick="openModalHistory()">
+                <button onclick="openModalHistory({{ $loop->index }})">
                     <li class="flex-shrink-0 w-40 h-60">
                         <img src="{{ asset('storage/' . $story->image) }}" class="w-full h-full object-cover rounded-xl">
                     </li>
                 </button>
             @endforeach
+
         </ul>
     </div>
 

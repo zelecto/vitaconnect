@@ -60,7 +60,7 @@
     const closeModalButtons = document.querySelectorAll('#close-modal, #close-modal-footer');
 
     // Función para abrir el modal
-    function openModalHistory() {
+    function openModalHistory(initialSlideIndex = 2) {
         modal.classList.remove('hidden');
         swiperInstance1 = new Swiper('.swiper-container', {
             slidesPerView: 1,
@@ -77,9 +77,15 @@
             effect: 'fade',
             fadeEffect: {
                 crossFade: true
+            },
+            on: {
+                init: function() {
+                    this.slideTo(initialSlideIndex, 0, false); // Mueve al índice deseado sin animación
+                }
             }
         });
     }
+
 
 
     function closeModalHistory() {
