@@ -14,23 +14,30 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        // Crear usuarios manualmente
         DB::table('users')->insert([
-            'name' => 'John',
-            'last_name' => 'Doe',
-            'email' => 'john.doe@example.com',
-            'password' => Hash::make('password123'),
-            'gender' => 'male',
-            'created_at' => now(),
-            'updated_at' => now(),
+            [
+                'name' => 'Zelecto',
+                'last_name' => 'Carvaja',
+                'email' => 'zelecto@example.com',
+                'password' => Hash::make('password123'),
+                'gender' => 'male',
+                'foto_perfil' => 'images/IconoHombre.png',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            // Puedes agregar más usuarios aquí si es necesario
         ]);
-        DB::table('users')->insert([
-            'name' => 'Zelecto',
-            'last_name' => 'Carvaja',
-            'email' => 'zelecto@example.com',
-            'password' => Hash::make('password123'),
-            'gender' => 'male',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+
+        // Crear más usuarios con la fábrica
+        \App\Models\User::factory(10)->create();
+
+        // Crear publicaciones
+        \App\Models\Publication::factory(10)->create();
+
+        // Crear reacciones y comentarios
+        \App\Models\Reaction::factory(10)->create();
+        \App\Models\Comment::factory(50)->create();
+        \App\Models\PublicationImage::factory(10)->create();
     }
 }
