@@ -61,19 +61,27 @@
             <h2 class="text-white text-xl my-3 mx-14">{{ $publication->description }}</h2>
 
             <div class="h-[60%] overflow-auto">
-                @for ($i = 0; $i < 10; $i++)
-                    <div class="flex items-start">
-                        <x-image-perfil class="min-w-12 h-12 " />
-                        <div class="flex h-24 w-full bg-gray-100 bg-opacity-70 rounded-lg mb-2 mx-2 p-4">
-                            <div class="font-semibold">Usuario {{ $i + 1 }}:</div>
-                            <p>Texto del comentario {{ $i + 1 }}</p>
+
+                @foreach ($publication->comments as $comment)
+                    <div class="flex items-start mb-2">
+                        <!-- Reemplaza con la imagen del perfil del usuario -->
+                        <x-image-perfil class="min-w-12 h-12" />
+
+                        <div class="h-24 w-full bg-gray-100 bg-opacity-70 rounded-lg mx-2 p-4">
+                            <div class="font-semibold">
+                                {{ $comment->user->name }} {{ $comment->user->last_name }}
+                            </div>
+                            <p>{{ $comment->text }}</p>
                         </div>
                     </div>
-                @endfor
+                @endforeach
+
             </div>
 
+
             <div class="my-8">
-                <form>
+                <form action="{{ route('comment.create', [$publication->id, $user->email, 'comentario']) }}"
+                    method="POST">
                     @csrf
                     <input type="hidden" name="publication_id" value="{{ $publication->id }}">
                     <input type="hidden" name="user_email" value="{{ $user->email }}">

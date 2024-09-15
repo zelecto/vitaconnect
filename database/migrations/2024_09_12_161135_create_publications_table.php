@@ -40,7 +40,7 @@ return new class extends Migration
             $table->foreign('user_email')->references('email')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
 
-        Schema::create('commets', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->longText('text')->nullable();
             $table->string('user_email');

@@ -33,4 +33,9 @@ class Publication extends Model
     {
         return $this->belongsTo(User::class, 'user_email', 'email');
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

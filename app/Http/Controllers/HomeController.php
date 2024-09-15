@@ -14,7 +14,8 @@ class HomeController extends Controller
 
         $publications = Publication::with([
             'user:email,name,last_name',
-            'images'
+            'images',
+            'comments.user:email,name,last_name'
         ])
             ->orderBy('created_at', 'desc')
             ->get();

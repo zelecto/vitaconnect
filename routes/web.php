@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PublicationsController;
@@ -17,4 +18,9 @@ Route::get('/Home/{email}', HomeController::class);
 
 Route::post('/CreatePost', [PublicationsController::class, 'create'])->name('create.post');
 
-Route::post('/CreateReaction/{id_publication}/{user_email}', [ReactionsController::class, 'create'])->name('reaction.create');
+Route::post('/CreateReaction/{id_publication}/{user_email}', [ReactionsController::class, 'store'])->name('reaction.create');
+
+Route::post(
+    '/CreateComment/{id_publication}/{user_email}/{comentario}',
+    [CommentController::class, 'store']
+)->name('comment.create');

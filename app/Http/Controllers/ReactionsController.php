@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class ReactionsController extends Controller
 {
-    public function create(Request $request)
+    public function store(Request $request)
     {
 
         $reaction = Reaction::where('user_email', $request->user_email)
