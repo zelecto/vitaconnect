@@ -1,10 +1,11 @@
+<!-- resources/views/user_modal.blade.php -->
 <div id="userModal" class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 hidden">
     <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
         <div class="px-4 py-5 sm:px-6">
             <h3 class="text-lg leading-6 font-medium text-gray-900 text-center">Crear nuevo usuario</h3>
         </div>
         <div class="px-4 py-5 sm:p-6">
-            <form id="registerUserFrom" action="/RegisterUser" method="POST">
+            <form id="registerUserFrom" action="/RegisterUser" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="grid grid-cols-1 gap-6">
                     <div>
@@ -26,7 +27,7 @@
                     <div>
                         <label for="gender" class="block text-sm font-medium text-gray-700">Género</label>
                         <select id="gender" name="gender"
-                            class="mt-2 h-14 px-2 block w-full shadow-sm sm:text-sm  border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition ease-in-out duration-300"
+                            class="mt-2 h-14 px-2 block w-full shadow-sm sm:text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition ease-in-out duration-300"
                             required>
                             <option value="">Selecciona una opción</option>
                             <option value="male">Masculino</option>
@@ -35,6 +36,28 @@
                         </select>
                     </div>
                 </div>
+
+                <input type="file" id="fileInput" name="image" class="hidden" accept="image/*"
+                    onchange="previewImage(event)">
+
+                <div class="mt-5">
+                    <!-- Botón para abrir el selector de archivos -->
+                    <button type="button"
+                        class="flex rounded bg-gray-600 px-4 py-2 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-gray-500"
+                        onclick="document.getElementById('fileInput').click()">
+                        <span class="material-symbols-outlined">
+                            add_a_photo
+                        </span>
+                        <h3 class="font-bold mx-2">Agregar foto</h3>
+                    </button>
+                </div>
+
+                <div id="imagePreviewContainer" class="mt-4 hidden">
+                    <div id="imagePreview" class="w-32 h-32 rounded-lg overflow-hidden bg-gray-100">
+                        <img id="imagePreviewImg" class="w-full h-full object-cover" alt="Image Preview">
+                    </div>
+                </div>
+
             </form>
         </div>
         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
@@ -58,5 +81,23 @@
 
     function closeModal() {
         document.getElementById('userModal').classList.add('hidden');
+    }
+
+    function previewImage(event) {
+        const fileInput = event.target;
+        const file = fileInput.files[0];
+        const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+        const imagePreviewImg = document.getElementById('imagePreviewImg');
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                imagePreviewImg.src = e.target.result;
+                imagePreviewContainer.classList.remove('hidden');
+            }
+            reader.readAsDataURL(file);
+        } else {
+            imagePreviewContainer.classList.add('hidden');
+        }
     }
 </script>

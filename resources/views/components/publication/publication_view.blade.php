@@ -22,7 +22,7 @@
         </button>
     </div>
 
-    <h2 class="text-xl my-3">
+    <h2 class="text-xl my-3 break-words whitespace-normal">
         {{ $publication->description }}
     </h2>
 

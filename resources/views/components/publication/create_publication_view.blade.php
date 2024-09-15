@@ -58,18 +58,20 @@
     function previewImages(event) {
         const fileInput = event.target;
         const files = Array.from(fileInput.files);
+
+        if (files.length > 6) {
+            alert('Solo puedes seleccionar hasta 6 imágenes.');
+            fileInput.value = '';
+            return;
+        }
+
         const imagePreviewContainer = document.getElementById('imagePreviewContainer');
-
-
         imagePreviewContainer.innerHTML = '';
 
         if (files.length > 0) {
             imagePreviewContainer.classList.remove('hidden');
 
-
-            const filesToShow = files.slice(0, 3);
-
-            filesToShow.forEach(file => {
+            files.forEach(file => {
                 if (file) {
                     const reader = new FileReader();
                     reader.onload = function(e) {
@@ -92,7 +94,6 @@
             imagePreviewContainer.classList.add('hidden');
         }
     }
-
 
     document.querySelectorAll('.color-box').forEach(box => {
         box.addEventListener('click', function() {
