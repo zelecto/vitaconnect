@@ -23,8 +23,8 @@
                 <div class="swiper-wrapper">
                     @foreach ($stories as $story)
                         <div class="swiper-slide flex justify-center items-center">
-                            <img src="{{ $story->image }}" alt="{{ $story->title }}"
-                                class="w-full h-full object-cover rounded-xl">
+                            <img src="{{ asset('storage/' . $story->image) }}"
+                                class="w-full h-full object-contain rounded-xl">
                         </div>
                     @endforeach
                     <div

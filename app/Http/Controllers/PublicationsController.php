@@ -10,15 +10,6 @@ class PublicationsController extends Controller
 {
     public function create(Request $request)
     {
-
-        //$request->validate([
-        //    'description' => 'string|max:255',
-        //    'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-        //    'user_email' => 'required|email',
-        //]);
-
-        // Crear nueva publicación
-
         $publication = new Publication();
         $publication->description = $request->description;
         $publication->user_email = $request->user_email;

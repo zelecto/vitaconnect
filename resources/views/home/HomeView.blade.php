@@ -77,7 +77,7 @@
                     <h1 class="font-sans text-4xl font-bold">Stories</h1>
                 </div>
                 <div class="my-5">
-                    <x-publication.stories_view />
+                    <x-publication.stories_view :stories='$stories' />
                 </div>
 
                 <div class="my-5">
