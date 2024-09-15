@@ -22,7 +22,10 @@ class PublicationsController extends Controller
         $publication = new Publication();
         $publication->description = $request->description;
         $publication->user_email = $request->user_email;
-        $publication->color = $request->selected_color;
+
+        if ($request->selected_color) {
+            $publication->color = $request->selected_color;
+        }
         $publication->save();
 
         // Manejar las imágenes

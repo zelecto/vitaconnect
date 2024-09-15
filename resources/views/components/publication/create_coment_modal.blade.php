@@ -1,6 +1,6 @@
 @props(['publication', 'user'])
 
-<div id="{{ $publication->id }}" class="fixed inset-0 items-center justify-center bg-gray-800 bg-opacity-80 z-50 hidden ">
+<div id="{{ $publication->id }}" class="fixed inset-0 items-center justify-center bg-gray-800 bg-opacity-80 z-50 hidden">
     <div class="w-full h-full p-10 flex justify-center">
         <div class="bg-black min-w-[800px] overflow-hidden rounded-l-lg shadow-xl sm:max-w-lg sm:w-full">
             <div class="h-full overflow-hidden w-full px-4 py-5">
@@ -58,45 +58,50 @@
                 </button>
             </div>
 
-            <h2 class="text-white text-xl my-3 mx-14">{{ $publication->description }}</h2>
+            <div class="flex flex-col h-[90%]">
+                <h2 class="text-white text-lg mx-5">{{ $publication->description }}</h2>
 
-            <div class="h-[60%] overflow-auto">
+                <div class="max-h-full overflow-auto my-4 justify-start">
 
-                @foreach ($publication->comments as $comment)
-                    <div class="flex items-start mb-2">
-                        <!-- Reemplaza con la imagen del perfil del usuario -->
-                        <x-image-perfil class="min-w-12 h-12" />
+                    @foreach ($publication->comments as $comment)
+                        <div class="flex items-start my-2">
+                            <!-- Reemplaza con la imagen del perfil del usuario -->
+                            <x-image-perfil class="min-w-12 h-12" />
 
-                        <div class="h-24 w-full bg-gray-100 bg-opacity-70 rounded-lg mx-2 p-4">
-                            <div class="font-semibold">
-                                {{ $comment->user->name }} {{ $comment->user->last_name }}
+                            <div
+                                class="flex-1 max-w-full bg-gray-100 bg-opacity-70 rounded-lg mx-2 p-4 overflow-x-hidden overflow-y-auto">
+                                <div class="font-semibold">
+                                    {{ $comment->user->name }} {{ $comment->user->last_name }}
+                                </div>
+                                <!-- Aquí aplicamos las propiedades de estilo para que el texto no se salga del contenedor -->
+                                <p class="break-words whitespace-normal">{{ $comment->text }}</p>
                             </div>
-                            <p>{{ $comment->text }}</p>
                         </div>
-                    </div>
-                @endforeach
-
-            </div>
+                    @endforeach
+                </div>
 
 
-            <div class="my-8">
-                <form action="{{ route('comment.create', [$publication->id, $user->email, 'comentario']) }}"
-                    method="POST">
-                    @csrf
-                    <input type="hidden" name="publication_id" value="{{ $publication->id }}">
-                    <input type="hidden" name="user_email" value="{{ $user->email }}">
-                    <div class="w-full">
-                        <textarea id="comentario" name="comentario"
-                            class="mt-2 text-xl w-full rounded-lg border-gray-200 shadow-sm px-4 resize-none focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500 transition ease-in-out duration-300 p-2"
-                            rows="3" placeholder="Enter any additional order notes..."></textarea>
-                    </div>
-                    <div class="min-w-full flex justify-end">
-                        <button type="submit"
-                            class="inline-block rounded bg-blue-600 px-8 py-2 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-blue-500">
-                            Comentar
-                        </button>
-                    </div>
-                </form>
+                <div class="mb-2">
+                    <form action="{{ route('comment.create', [$publication->id, $user->email, 'comentario']) }}"
+                        method="POST">
+                        @csrf
+                        <input type="hidden" name="publication_id" value="{{ $publication->id }}">
+                        <input type="hidden" name="user_email" value="{{ $user->email }}">
+
+                        <div class="w-full">
+                            <textarea id="comentario" name="comentario"
+                                class="mt-2 text-xl w-full rounded-lg border-gray-200 shadow-sm px-4 resize-none focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500 transition ease-in-out duration-300 p-2"
+                                rows="3" placeholder="Enter any additional order notes..."></textarea>
+                        </div>
+                        <div class="min-w-full flex justify-end">
+                            <button type="submit"
+                                class="inline-block rounded bg-blue-600 px-8 py-2 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-blue-500">
+                                Comentar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
             </div>
         </div>
     </div>
