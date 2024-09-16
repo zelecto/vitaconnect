@@ -49,6 +49,11 @@
                         @endforeach
                     @endif
 
+                    <div class="flex justify-end mt-2">
+                        <nav aria-label="Page navigation example">
+                            {{ $followingUsers->links('pagination::bootstrap-4') }}
+                        </nav>
+                    </div>
                 </div>
                 <a href="/"
                     class="text-xl text-red-500 hover:text-red-600 font-bold focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
@@ -77,7 +82,7 @@
             </div>
 
             <!-- Columna de historias y seguidores -->
-            <div class="w-1/4 p-5">
+            <div class="w-1/4 ">
                 @if ($stories->isEmpty())
                     <x-alert_info title="No hay historias"
                         mensaje="Aún no has publicado historias. ¡Comparte algo interesante!" class="mb-10" />
@@ -123,7 +128,11 @@
                     </div>
                 @endif
 
-
+                <div class="flex justify-end mt-2">
+                    <nav aria-label="Page navigation example">
+                        {{ $followers->links('pagination::bootstrap-4') }}
+                    </nav>
+                </div>
 
             </div>
         </div>

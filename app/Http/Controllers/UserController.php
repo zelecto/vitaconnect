@@ -21,7 +21,7 @@ class UserController extends Controller
             $query->select('followed_email')
                 ->from('follows')
                 ->where('follower_email', $user_email);
-        })->get(['email', 'name', 'foto_perfil']);
+        })->paginate(5, ['email', 'name', 'foto_perfil']);
 
         $followingEmails = $followingUsers->pluck('email');
 
@@ -31,7 +31,7 @@ class UserController extends Controller
                 ->where('followed_email', $user_email);
         })
             ->whereNotIn('email', $followingEmails)
-            ->get(['email', 'name', 'foto_perfil']);
+            ->paginate(5, ['email', 'name', 'foto_perfil']);
 
         $publications = Publication::where('user_email', $user_email)->get();
         $stories = Story::where('user_email', $user_email)->get();
