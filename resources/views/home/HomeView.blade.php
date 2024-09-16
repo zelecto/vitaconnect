@@ -39,7 +39,7 @@
                         Home
                     </h2>
                     <div class="inline-flex p-1">
-                        <button
+                        {{-- <button
                             class="inline-block rounded-md px-4 py-2 text-sm text-gray-500 hover:text-gray-700 focus:relative">
                             Recientes
                         </button>
@@ -52,7 +52,7 @@
                         <button
                             class="inline-block rounded-md px-4 py-2 text-sm text-blue-500 shadow-sm focus:relative">
                             Populares
-                        </button>
+                        </button> --}}
                     </div>
                 </div>
 
@@ -86,10 +86,7 @@
 
                 <div class="my-5">
                     @if ($stories->isEmpty())
-                        <div class="p-4 bg-gray-100 border-l-4 border-gray-500 text-gray-700">
-                            <p class="font-bold">No hay historias</p>
-                            <p>Aún no hay historias para mostrar.</p>
-                        </div>
+                        <x-alert_info title="No hay historias" mensaje="Aún no hay historias para mostrar." />
                     @else
                         <div>
                             <h1 class="font-sans text-4xl font-bold">Stories</h1>
@@ -101,10 +98,8 @@
 
                 <div class="my-5">
                     @if ($suggestions->isEmpty())
-                        <div class="p-4 bg-blue-100 border-l-4 border-blue-500 text-blue-700">
-                            <p class="font-bold">No hay sugerencias de amistad</p>
-                            <p>Aún no hay sugerencias de amistad para mostrar.</p>
-                        </div>
+                        <x-alert_info title="No hay sugerencias de amistad"
+                            mensaje="Aún no hay sugerencias de amistad para mostrar." />
                     @else
                         <h1 class="font-sans text-2xl font-bold">Sugerencias de amistad</h1>
                         <x-publication.suggetions_view :suggestions="$suggestions" :user_email="$user->email" />
