@@ -17,9 +17,6 @@
             </div>
         </div>
 
-        <button class="material-symbols-outlined min-w-20 rounded-md hover:bg-blue-200">
-            share_windows
-        </button>
     </div>
 
     <h2 class="text-xl my-3 break-words whitespace-normal">

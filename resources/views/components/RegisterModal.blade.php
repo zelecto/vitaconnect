@@ -32,10 +32,6 @@
                     </div>
                 </div>
 
-
-
-
-
                 <div class="mt-5">
                     <!-- Botón para abrir el selector de archivos -->
                     <label for="fileInput"

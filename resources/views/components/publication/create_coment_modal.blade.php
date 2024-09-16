@@ -5,7 +5,7 @@
         <div class="bg-black min-w-[800px] overflow-hidden rounded-l-lg shadow-xl sm:max-w-lg sm:w-full">
             <div class="h-full overflow-hidden w-full px-4 py-5">
                 <div class="h-full flex justify-center items-center relative">
-                    <!-- Swiper -->
+
                     <div class="swiper-container w-full h-full">
                         <div class="swiper-wrapper">
                             @foreach ($publication->images as $image)
@@ -16,10 +16,10 @@
                             @endforeach
                         </div>
 
-                        <!-- Add Pagination -->
+
                         <div class="swiper-pagination"></div>
 
-                        <!-- Add Navigation -->
+
                         <div
                             class="swiper-button-next absolute top-1/2 right-0 transform -translate-y-1/2 text-white p-2 rounded-full">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -132,7 +132,7 @@
                     crossFade: true
                 }
             });
-            // Forzar el redibujado
+
             swiperInstance.update();
         }
     }

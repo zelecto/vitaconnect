@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Publication;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -38,16 +39,20 @@ class HomeController extends Controller
             ->orderBy('like_count', 'desc')
             ->get();
 
-        // Construir la consulta
         $stories = DB::table('stories as s')
             ->leftJoin('follows as f', 's.user_email', '=', 'f.followed_email')
+            ->leftJoin('users as u', 's.user_email', '=', 'u.email') // Agregar join con la tabla de usuarios
             ->where(function ($query) use ($email) {
                 $query->where('s.user_email', $email)
                     ->orWhere('f.follower_email', $email);
             })
-            ->select('s.*')
+            ->select('s.*', 'u.name', 'u.last_name', 'u.foto_perfil')
             ->orderBy('s.created_at', 'desc')
-            ->get();
+            ->get()->map(function ($story) {
+                $story->created_at = Carbon::parse($story->created_at); // Convierte la fecha a Carbon
+                return $story;
+            });
+
 
         return view('home.HomeView', ['user' => $user, 'publications' => $publications, 'suggestions' => $topUsersByLikes, 'stories' => $stories]);
     }

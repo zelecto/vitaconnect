@@ -9,7 +9,7 @@ class StoryController extends Controller
 {
     public function store(Request $request)
     {
-        $request->validate(['image' => 'required|mimes:jpeg,png,jpg,gif']);
+        $request->validate(['image' => "image => mimes:jpeg,png,jpg,gif"]);
         $story = new Story();
         if ($request->hasFile('images')) {
             $files = $request->file('images');

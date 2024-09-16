@@ -36,11 +36,11 @@
             </div>
 
             <div class="flex w-full justify-between items-center px-2 mt-4">
-                <!-- Input de archivo oculto -->
+
                 <input type="file" id="fileInput" name="images[]" class="hidden" accept="image/*" multiple
                     onchange="previewImages(event)">
 
-                <!-- Botón para abrir el selector de archivos -->
+
                 <button type="button"
                     class="flex rounded bg-gray-600 px-4 py-2 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-gray-500"
                     onclick="document.getElementById('fileInput').click()">
@@ -75,16 +75,16 @@
         const selectedType = this.value;
 
         if (selectedType === 'historia') {
-            form.action = '{{ route('create.story') }}'; // Cambia a la ruta para historias
-            textarea.disabled = true; // Desactiva el textarea
-            textarea.classList.add('bg-gray-100', 'cursor-not-allowed'); // Añade estilos para desactivar
-            textarea.value = ''; // Elimina el texto del textarea
-            fileInput.setAttribute('multiple', ''); // Permite solo una imagen
+            form.action = '{{ route('create.story') }}';
+            textarea.disabled = true;
+            textarea.classList.add('bg-gray-100', 'cursor-not-allowed');
+            textarea.value = '';
+            fileInput.setAttribute('multiple', '');
         } else {
-            form.action = '{{ route('create.post') }}'; // Cambia a la ruta para publicaciones
-            textarea.disabled = false; // Activa el textarea
-            textarea.classList.remove('bg-gray-100', 'cursor-not-allowed'); // Quita estilos de desactivado
-            fileInput.removeAttribute('multiple'); // Permite múltiples imágenes
+            form.action = '{{ route('create.post') }}';
+            textarea.disabled = false;
+            textarea.classList.remove('bg-gray-100', 'cursor-not-allowed');
+            fileInput.removeAttribute('multiple');
         }
     });
 

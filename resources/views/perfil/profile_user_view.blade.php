@@ -50,6 +50,10 @@
                     @endif
 
                 </div>
+                <a href="/"
+                    class="text-xl text-red-500 hover:text-red-600 font-bold focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
+                    Cerrar sesión
+                </a>
             </div>
 
             <!-- Columna de publicaciones -->
@@ -79,9 +83,10 @@
                         mensaje="Aún no has publicado historias. ¡Comparte algo interesante!" class="mb-10" />
                 @else
                     <div>
-                        <h1 class="font-sans text-4xl font-bold">Stories</h1>
+                        <h1 class="text-center px-10 font-sans text-4xl font-bold mb-4">Stories</h1>
                     </div>
                     <x-publication.stories_view :stories='$stories' />
+                    <div class="mb-10"></div>
                 @endif
 
                 @if ($followers->isEmpty())
