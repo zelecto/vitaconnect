@@ -18,8 +18,8 @@ class PublicationImageFactory extends Factory
     {
         // Generar una imagen falsa usando Faker
         $faker = \Faker\Factory::create();
-        $imagePath = 'images/' .
-            $faker->image('public/storage/images', 360, 360, 'animals', true, true, 'cats', true);
+        $imagePath =
+            'images/' . $faker->image('public/storage/images', 640, 480, 'nature', false);
 
         return [
             'publication_id' => \App\Models\Publication::factory(),

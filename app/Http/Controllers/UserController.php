@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Follow;
+use App\Models\Publication;
+use App\Models\Story;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -9,6 +12,34 @@ use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
+    public function __invoke($user_email)
+    {
+
+        $user = User::where('email', $user_email)->first();
+
+        $followingUsers = User::whereIn('email', function ($query) use ($user_email) {
+            $query->select('followed_email')
+                ->from('follows')
+                ->where('follower_email', $user_email);
+        })->get(['email', 'name', 'foto_perfil']);
+
+        $followingEmails = $followingUsers->pluck('email');
+
+        $followers = User::whereIn('email', function ($query) use ($user_email) {
+            $query->select('follower_email')
+                ->from('follows')
+                ->where('followed_email', $user_email);
+        })
+            ->whereNotIn('email', $followingEmails)
+            ->get(['email', 'name', 'foto_perfil']);
+
+        $publications = Publication::where('user_email', $user_email)->get();
+        $stories = Story::where('user_email', $user_email)->get();
+
+        return view('perfil.profile_user_view', compact('user', 'followingUsers', 'followers', 'publications', 'stories'));
+    }
+
+
 
     public function rules()
     {

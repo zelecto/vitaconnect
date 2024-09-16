@@ -21,20 +21,21 @@
     <div class="min-h-screen min-w-screen bg-gray-50">
         <div class="flex min-w-screen justify-between min-h-screen px-5 p-10">
             <!-- Lado izquierdo fijo -->
-            <div class="flex flex-col items-center fixed left-[3.5%]">
-                <x-image-perfil class="size-32" :image_path="$user->foto_perfil"></x-image-perfil>
-                <h1 class="font-bold text-lg font-sans">{{ $user->name }} {{ $user->last_name }}</h1>
-                <p class="text-gray-400">{{ $user->email }}</p>
-            </div>
+            <a href="/UserPerfil/{{ $user->email }}">
+                <div class="flex flex-col items-center fixed left-[3.5%]">
+                    <x-image-perfil class="size-32" :image_path="$user->foto_perfil"></x-image-perfil>
+                    <h1 class="font-bold text-lg font-sans">{{ $user->name }} {{ $user->last_name }}</h1>
+                    <p class="text-gray-400">{{ $user->email }}</p>
+                </div>
+            </a>
 
-            <!-- Espaciador para el lado izquierdo fijo -->
+
             <div class="w-[10%]"></div>
 
-            <!-- Contenido central con scroll -->
             <div class="w-full md:w-[60%] min-h-full pl-10">
                 <div class="flex justify-between">
                     <h2 class="font-sans text-4xl font-bold">
-                        Feeds
+                        Home
                     </h2>
                     <div class="inline-flex p-1">
                         <button

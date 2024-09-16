@@ -31,3 +31,5 @@ Route::post(
 Route::post('/Follow/{user_email}/{follow_email}', [FollowController::class, 'follow'])->name('follow');
 
 Route::post('/CreateStory', [StoryController::class, 'store'])->name('create.story');
+
+Route::get('/UserPerfil/{email_user}', UserController::class);
