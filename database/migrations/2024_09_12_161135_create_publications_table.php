@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::enableForeignKeyConstraints();
         Schema::create('publications', function (Blueprint $table) {
             $table->id();
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->integer('reaction')->default(0);
             $table->integer('views')->default(0);
             $table->string('user_email');

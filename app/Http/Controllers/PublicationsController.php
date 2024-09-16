@@ -10,6 +10,7 @@ class PublicationsController extends Controller
 {
     public function create(Request $request)
     {
+        $request->validate(['image' => "image => mimes:jpeg,png,jpg,gif"]);
         $publication = new Publication();
         $publication->description = $request->description;
         $publication->user_email = $request->user_email;

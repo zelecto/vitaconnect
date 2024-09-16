@@ -83,21 +83,41 @@
             <div class="w-1/4"></div>
 
             <div class="flex flex-col fixed right-0 w-[26%]">
-                <div>
-                    <h1 class="font-sans text-4xl font-bold">Stories</h1>
-                </div>
+
                 <div class="my-5">
-                    <x-publication.stories_view :stories='$stories' />
+                    @if ($stories->isEmpty())
+                        <div class="p-4 bg-gray-100 border-l-4 border-gray-500 text-gray-700">
+                            <p class="font-bold">No hay historias</p>
+                            <p>Aún no hay historias para mostrar.</p>
+                        </div>
+                    @else
+                        <div>
+                            <h1 class="font-sans text-4xl font-bold">Stories</h1>
+                        </div>
+                        <x-publication.stories_view :stories='$stories' />
+                    @endif
+
                 </div>
 
                 <div class="my-5">
-                    <h1 class="font-sans text-2xl font-bold">Sugerencias de amistad</h1>
-                    <x-publication.suggetions_view :suggestions="$suggestions" :user_email="$user->email" />
+                    @if ($suggestions->isEmpty())
+                        <div class="p-4 bg-blue-100 border-l-4 border-blue-500 text-blue-700">
+                            <p class="font-bold">No hay sugerencias de amistad</p>
+                            <p>Aún no hay sugerencias de amistad para mostrar.</p>
+                        </div>
+                    @else
+                        <h1 class="font-sans text-2xl font-bold">Sugerencias de amistad</h1>
+                        <x-publication.suggetions_view :suggestions="$suggestions" :user_email="$user->email" />
+                    @endif
 
                 </div>
 
             </div>
-
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <x-alert_error :message="$error" />
+                @endforeach
+            @endif
         </div>
     </div>
 
