@@ -21,9 +21,7 @@ class HomeController extends Controller
             'comments.user:email,name,last_name,foto_perfil'
         ])
             ->orderBy('created_at', 'desc')
-            ->get();
-
-
+            ->paginate(10);
 
         $topUsersByLikes = DB::table('reactions')
             ->join('publications', 'reactions.publication_id', '=', 'publications.id')

@@ -44,17 +44,46 @@ class UserController extends Controller
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
+            'name' => 'required|string|max:50|min:3',
+            'last_name' => 'required|string|max:50|min:3',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8',
-            'gender' => 'required|string'
+            'gender' => 'required|string',
+            'image' => 'required|mimes:jpeg,png,jpg,gif'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'name.required' => 'El nombre es obligatorio.',
+            'name.string' => 'El nombre debe ser una cadena de texto válida.',
+            'name.max' => 'El nombre no puede exceder los 50 caracteres.',
+            'name.min' => 'El nombre debe tener al menos 3 caracteres.',
+
+            'last_name.required' => 'El apellido es obligatorio.',
+            'last_name.string' => 'El apellido debe ser una cadena de texto válida.',
+            'last_name.max' => 'El apellido no puede exceder los 50 caracteres.',
+            'last_name.min' => 'El apellido debe tener al menos 3 caracteres.',
+
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.email' => 'El correo electrónico debe ser una dirección válida.',
+            'email.unique' => 'El correo electrónico ya está registrado.',
+
+            'password.required' => 'La contraseña es obligatoria.',
+            'password.string' => 'La contraseña debe ser una cadena de texto válida.',
+            'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
+
+            'gender.required' => 'El género es obligatorio.',
+            'gender.string' => 'El género debe ser una cadena de texto válida.',
         ];
     }
 
+
+
     public function store(Request $request)
     {
-        $request->validate($this->rules());
+
+        $request->validate($this->rules(), $this->messages());
 
         $user = new User();
         $user->name = $request->name;

@@ -76,6 +76,12 @@
 
             </div>
 
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <x-alert_error :message="$error" />
+                @endforeach
+            @endif
+
         </div>
     </div>
 </body>

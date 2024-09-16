@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div class="flex min-w-screen min-h-screen">
+    <div class="flex min-w-screen min-h-screen bg-gray-200">
         <div class="flex gap-10 min-w-full min-h-full p-10">
             <!-- Columna de perfil -->
             <div class="flex flex-col justify-start items-center w-1/4 text-2xl font-sans">
@@ -47,8 +47,8 @@
 
             <!-- Columna de publicaciones -->
             <div class="w-1/2">
-                <x-publication.create_publication_view :user="$user" />
 
+                <h2 class="font-bold text-xl my-2">Tus publicaciones</h2>
                 @if ($publications->isEmpty())
                     <p class="text-center text-gray-600">No hay publicaciones disponibles.</p>
                 @else

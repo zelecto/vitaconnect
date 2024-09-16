@@ -22,3 +22,27 @@
 
     /* Añadido para suavizar el desplazamiento */
 }
+
+.pagination {
+    display: flex; /* Arrange links horizontally */
+    list-style: none; /* Remove default bullet points */
+    padding: 0; /* Remove default padding */
+    margin: 20px 0; /* Add margin for spacing */
+}
+
+.page-link {
+    padding: 5px 10px; /* Adjust padding as needed */
+    border: 1px solid #ddd; /* Add a thin border */
+    margin-right: 5px; /* Add space between links */
+    text-decoration: none; /* Remove underline */
+    color: #333; /* Set text color */
+}
+
+.page-link:hover {
+    background-color: #eee; /* Add hover effect */
+}
+
+.page-link.active {
+    background-color: #007bff; /* Style the active page link */
+    color: #fff; /* Change text color for active link */
+}

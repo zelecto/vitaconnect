@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home</title>
+
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js" defer></script>
@@ -67,6 +68,14 @@
                         </div>
                     @endforeach
                 @endif
+                <div class="">
+
+                    <div class="flex justify-end mt-2">
+                        <nav aria-label="Page navigation example">
+                            {{ $publications->links('pagination::bootstrap-4') }}
+                        </nav>
+                    </div>
+                </div>
 
 
             </div>

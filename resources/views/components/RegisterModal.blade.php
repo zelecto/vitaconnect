@@ -9,23 +9,18 @@
                 @csrf
                 <div class="grid grid-cols-1 gap-6">
                     <div>
-                        <label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
                         <x-input type="text" id="name" name="name" placeholder="Nombre" />
                     </div>
                     <div>
-                        <label for="last_name" class="block text-sm font-medium text-gray-700">Apellido</label>
                         <x-input type="text" id="last_name" name="last_name" placeholder="Apellido" />
                     </div>
                     <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                         <x-input type="email" id="email" name="email" placeholder="Email" />
                     </div>
                     <div>
-                        <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
                         <x-input type="password" id="password" name="password" placeholder="Contraseña" />
                     </div>
                     <div>
-                        <label for="gender" class="block text-sm font-medium text-gray-700">Género</label>
                         <select id="gender" name="gender"
                             class="mt-2 h-14 px-2 block w-full shadow-sm sm:text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition ease-in-out duration-300"
                             required>
@@ -37,26 +32,28 @@
                     </div>
                 </div>
 
-                <input type="file" id="fileInput" name="image" class="hidden" accept="image/*"
-                    onchange="previewImage(event)">
+
+
+
 
                 <div class="mt-5">
                     <!-- Botón para abrir el selector de archivos -->
-                    <button type="button"
-                        class="flex rounded bg-gray-600 px-4 py-2 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-gray-500"
-                        onclick="document.getElementById('fileInput').click()">
+                    <label for="fileInput"
+                        class="flex items-center p-4 gap-3 rounded-3xl border border-gray-300 border-dashed bg-gray-50 cursor-pointer">
                         <span class="material-symbols-outlined">
                             add_a_photo
                         </span>
                         <h3 class="font-bold mx-2">Agregar foto</h3>
-                    </button>
+                        <input type="file" id="fileInput" name="image" accept="image/*" class="hidden" />
+                    </label>
+
+
                 </div>
 
-                <div id="imagePreviewContainer" class="mt-4 hidden">
-                    <div id="imagePreview" class="w-32 h-32 rounded-lg overflow-hidden bg-gray-100">
-                        <img id="imagePreviewImg" class="w-full h-full object-cover" alt="Image Preview">
-                    </div>
+                <div id="imagePreviewContainer" class="hidden mt-4">
+                    <img id="imagePreviewImg" class="w-36 rounded-lg shadow-md" alt="Vista previa de la imagen">
                 </div>
+
 
             </form>
         </div>
@@ -72,6 +69,8 @@
             </button>
         </div>
     </div>
+
+
 </div>
 
 <script>
@@ -89,7 +88,7 @@
         const imagePreviewContainer = document.getElementById('imagePreviewContainer');
         const imagePreviewImg = document.getElementById('imagePreviewImg');
 
-        if (file) {
+        if (file && file.type.startsWith('image/')) {
             const reader = new FileReader();
             reader.onload = function(e) {
                 imagePreviewImg.src = e.target.result;

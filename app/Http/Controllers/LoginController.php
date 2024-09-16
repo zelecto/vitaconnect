@@ -20,8 +20,13 @@ class LoginController extends Controller
 
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required|string',
+            'password' => 'required|string|min:8',
+        ], [
+            'email.email' => 'Por favor, introduce un correo electrónico válido.',
+            'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
+            'password.string' => 'La contraseña debe ser una cadena de texto válida.',
         ]);
+
 
 
         $user = User::where('email', $request->email)->first();
